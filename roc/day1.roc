@@ -56,7 +56,7 @@ getOrDefault = \d, key ->
 
 part2 =
     ids = parseInput? input
-    
+
     lhs =
         ids
         |> List.map \elem -> elem.0
@@ -66,17 +66,17 @@ part2 =
 
     getCounts = \source ->
         when source is
-            [first, .. as tail] -> 
-                getCounts tail 
+            [first, .. as tail] ->
+                getCounts tail
                 |> Dict.update first incrementOrSet
+
             [] -> Dict.empty {}
 
     counts = getCounts rhs
-    lhs 
+    lhs
     |> List.map \id -> id * (getOrDefault counts id)
     |> List.sum
     |> Ok
-    
 
 asExit = \result ->
     when result is
